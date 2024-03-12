@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package userproto;
+
+service UserProto {
+
+  rpc GetUserBalance(UserIdRequest) returns (UserBalanceResponse);
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+}
+
+message SignInRequest{
+	string UserName = 1;
+	string Password = 2;
+}
+message SignInResponse{
+	string Response = 1;
+	bool SignInSuccess = 2;
+   optional	string UserId = 3;
+}
+
+
+
+message UserIdRequest{
+	string UserId = 1;
+}
+message UserBalanceResponse{
+	string balance = 1;
+}
+
+
+// The response message containing the greetings.

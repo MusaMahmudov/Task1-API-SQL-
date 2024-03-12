@@ -1,0 +1,60 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Task1Server";
+
+package game;
+
+service Game {
+
+  rpc GetGamesToPlay(MatchRequest) returns (MatchResponse);
+  rpc ConnectToGame(ConnectToGameRequest) returns (ConnectToGameResponse);
+  rpc MakeMove(MoveRequest) returns (Response);
+  rpc DetermineResult(GameRequest)returns (GameResult);
+}
+message MoveRequest {
+  string Move = 3;
+  string GameId = 2;
+  string playerId = 1;
+}
+message Response{
+	string Response =1;
+}
+
+
+
+message GameRequest{
+	string GameId  =1;
+}
+message GameResult {
+  string Result = 1;
+  
+}
+
+
+
+message ConnectToGameRequest{
+	string UserId = 1;
+	string GameId = 2;
+}
+message ConnectToGameResponse{
+	string response = 1;
+	bool IsSuccess = 2;
+
+}
+
+message MatchRequest{
+	string MatchRequest = 1;
+}
+message MatchResponse{
+	repeated GetGamesToPlay games = 1;
+}
+message GetGamesToPlay{
+	int32 GameNumber = 1;
+   optional	string PlayerOne = 2;
+	string bet = 3;
+		string GameId = 4;
+
+}
+
+
+// The response message containing the greetings.
